@@ -21,18 +21,8 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json.use.type.headers: false
-        spring.json.value.default.type: com.exemplo.intentservice.messaging.event.ChatMessageEvent
-        spring.json.trusted.packages: "com.exemplo.*"
-
-  # ===== BLOCO SABADO: descomente junto com as dependencias do pom =====
-  # datasource:
-  #   url: jdbc:postgresql://localhost:5432/pedidos
-  #   username: app
-  #   password: app
-  # jpa:
-  #   hibernate:
-  #     ddl-auto: validate
-  #   open-in-view: false
+        spring.json.value.default.type: com.mateusdomelo.intentservice.messaging.event.ChatMessageEvent
+        spring.json.trusted.packages: "com.mateusdomelo.*"
 
 app:
   topics:
@@ -41,4 +31,4 @@ app:
 
 logging:
   level:
-    com.exemplo: DEBUG
+    com.mateusdomelo: DEBUG

@@ -12,9 +12,6 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       properties:
-        # Sem header de tipo: o consumidor do outro servico tem a classe dele,
-        # com outro pacote. Se mandar o tipo, ele tenta instanciar uma classe
-        # que nao existe do lado de la. Essa e a pegadinha classica do spring-kafka.
         spring.json.add.type.headers: false
 
     consumer:
@@ -24,8 +21,8 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json.use.type.headers: false
-        spring.json.value.default.type: com.exemplo.chatgateway.messaging.event.ChatReplyEvent
-        spring.json.trusted.packages: "com.exemplo.*"
+        spring.json.value.default.type: com.mateusdomelo.chatgateway.messaging.event.ChatReplyEvent
+        spring.json.trusted.packages: "com.mateusdomelo.*"
 
 app:
   topics:
@@ -34,4 +31,4 @@ app:
 
 logging:
   level:
-    com.exemplo: DEBUG
+    com.mateusdomelo: DEBUG
