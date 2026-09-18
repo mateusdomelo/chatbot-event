@@ -1,0 +1,44 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: intent-service
+
+  kafka:
+    bootstrap-servers: localhost:9092
+
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.add.type.headers: false
+
+    consumer:
+      group-id: intent-service
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.use.type.headers: false
+        spring.json.value.default.type: com.exemplo.intentservice.messaging.event.ChatMessageEvent
+        spring.json.trusted.packages: "com.exemplo.*"
+
+  # ===== BLOCO SABADO: descomente junto com as dependencias do pom =====
+  # datasource:
+  #   url: jdbc:postgresql://localhost:5432/pedidos
+  #   username: app
+  #   password: app
+  # jpa:
+  #   hibernate:
+  #     ddl-auto: validate
+  #   open-in-view: false
+
+app:
+  topics:
+    messages: chat.messages
+    replies: chat.replies
+
+logging:
+  level:
+    com.exemplo: DEBUG

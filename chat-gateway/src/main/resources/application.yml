@@ -1,0 +1,37 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: chat-gateway
+
+  kafka:
+    bootstrap-servers: localhost:9092
+
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        # Sem header de tipo: o consumidor do outro servico tem a classe dele,
+        # com outro pacote. Se mandar o tipo, ele tenta instanciar uma classe
+        # que nao existe do lado de la. Essa e a pegadinha classica do spring-kafka.
+        spring.json.add.type.headers: false
+
+    consumer:
+      group-id: chat-gateway
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.use.type.headers: false
+        spring.json.value.default.type: com.exemplo.chatgateway.messaging.event.ChatReplyEvent
+        spring.json.trusted.packages: "com.exemplo.*"
+
+app:
+  topics:
+    messages: chat.messages
+    replies: chat.replies
+
+logging:
+  level:
+    com.exemplo: DEBUG
