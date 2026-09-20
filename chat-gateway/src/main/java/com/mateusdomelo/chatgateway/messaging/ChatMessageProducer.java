@@ -19,6 +19,5 @@ public class ChatMessageProducer {
 
     public void send(ChatMessageEvent chatMessageEvent) {
         kafkaTemplate.send(topic, chatMessageEvent);
-        System.out.println("[CHAT GATEWAY] Mensagem enviada com sucesso!");
     }
 }

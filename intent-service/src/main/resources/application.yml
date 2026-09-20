@@ -24,6 +24,19 @@ spring:
         spring.json.value.default.type: com.mateusdomelo.intentservice.messaging.event.ChatMessageEvent
         spring.json.trusted.packages: "com.mateusdomelo.*"
 
+  sql:
+    init:
+      mode: always
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/pedidos
+    username: app
+    password: app
+    driverClassName: org.postgresql.Driver
 app:
   topics:
     messages: chat.messages

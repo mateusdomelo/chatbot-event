@@ -37,6 +37,6 @@ public class ChatController {
         return new ResponseEntity<>(new SendMessageResponse(
                 messageEvent.message(),
                 messageEvent.sentAt()
-        ), HttpStatus.OK);
+        ), HttpStatus.ACCEPTED);
     }
 }

@@ -9,7 +9,6 @@ public class ChatReplyListener {
 
     @KafkaListener(topics = "${app.topics.replies}", groupId = "${spring.kafka.consumer.group-id}")
     public void receiveMessage(ChatReplyEvent chatReplyEvent) {
-        System.out.println("[CHAT GATEWAY]: Message received: " + chatReplyEvent.message());
-        System.out.println("Message with sessionId '" + chatReplyEvent.sessionId() + "' is DONE!");
+        System.out.println("[CHAT GATEWAY] Reply message received: " + chatReplyEvent.message());
     }
 }
