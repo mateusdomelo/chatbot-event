@@ -24,6 +24,10 @@ spring:
         spring.json.value.default.type: com.mateusdomelo.chatgateway.messaging.event.ChatReplyEvent
         spring.json.trusted.packages: "com.mateusdomelo.*"
 
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/chatbot
+
 app:
   topics:
     messages: chat.messages

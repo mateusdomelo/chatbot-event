@@ -24,8 +24,7 @@ public class ChatMessageListener {
 
         var intentReply = intentPipeline.execute(chatMessageEvent.message());
 
-        ChatReplyEvent reply = new ChatReplyEvent(chatMessageEvent.sessionId(),
-                "(LuIA): " + intentReply, Instant.now());
+        ChatReplyEvent reply = new ChatReplyEvent(chatMessageEvent.sessionId(),intentReply, Instant.now());
 
         chatReplyProducer.send(reply);
     }

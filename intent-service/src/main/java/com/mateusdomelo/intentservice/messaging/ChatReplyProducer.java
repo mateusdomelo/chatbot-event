@@ -20,6 +20,6 @@ public class ChatReplyProducer {
 
     public void send(ChatReplyEvent chatReplyEvent) {
         kafkaTemplate.send(topic, chatReplyEvent);
-        System.out.println("[INTENT]: Mensagem enviada ao tópico '" + topic + "'");
+        System.out.println("[INTENT]: Message sent '" + topic + "'");
     }
 }

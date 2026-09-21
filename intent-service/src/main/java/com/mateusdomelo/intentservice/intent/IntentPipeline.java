@@ -19,7 +19,7 @@ public class IntentPipeline {
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .findFirst()
-                .orElseThrow(() -> new IllegalStateException("None handler accepted the message"));
+                .orElseThrow(() -> new IllegalStateException("No handler accepted"));
 
     }
 }
