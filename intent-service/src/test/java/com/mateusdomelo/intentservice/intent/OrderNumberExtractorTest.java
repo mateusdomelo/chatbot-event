@@ -11,6 +11,6 @@ class OrderNumberExtractorTest {
     @Test
     void regexExtraiNumeroPedido() {
         OrderNumberExtractor extractor = new OrderNumberExtractor();
-        assertEquals(Optional.of("123"), extractor.extract("Oi, pedido 123"));
+        assertEquals(Optional.of(123), extractor.extract("Oi, pedido 123"));
     }
 }
