@@ -35,7 +35,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/pedidos?connectTimeout=2
     username: app
-    password: app
+    password: ${POSTGRES_PASSWORD}
     driverClassName: org.postgresql.Driver
     hikari:
       connection-timeout: 3000
