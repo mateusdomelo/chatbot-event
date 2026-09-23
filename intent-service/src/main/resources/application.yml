@@ -56,3 +56,14 @@ app:
 logging:
   level:
     com.mateusdomelo: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+          - circuitbreakers
+  endpoint:
+    health:
+      show-details: always
