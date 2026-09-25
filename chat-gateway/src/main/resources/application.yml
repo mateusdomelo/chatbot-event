@@ -32,6 +32,9 @@ app:
   topics:
     messages: chat.messages
     replies: chat.replies
+  security:
+    username: ${CHAT_GATEWAY_USER}
+    password: ${CHAT_GATEWAY_PASSWORD}
 
 logging:
   level:
@@ -45,4 +48,4 @@ management:
           - health
   endpoint:
     health:
-      show-details: always
+      show-details: never
