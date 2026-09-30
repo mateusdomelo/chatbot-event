@@ -8,6 +8,6 @@ import java.util.Optional;
 public class FallbackIntentHandler implements IntentHandler {
     @Override
     public Optional<String> handle(String message) {
-        return Optional.of("Sorry, I did not understand your message. Try again.");
+        return Optional.of("Sorry, I did not understand your message. Try later.");
     }
 }

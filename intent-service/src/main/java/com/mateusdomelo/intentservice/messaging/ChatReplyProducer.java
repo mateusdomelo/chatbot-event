@@ -7,9 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ChatReplyProducer {
-
     private final KafkaTemplate<String, ChatReplyEvent> kafkaTemplate;
-
     private final String topic;
 
     public ChatReplyProducer(KafkaTemplate<String, ChatReplyEvent> kafkaTemplate,
@@ -20,6 +18,5 @@ public class ChatReplyProducer {
 
     public void send(ChatReplyEvent chatReplyEvent) {
         kafkaTemplate.send(topic, chatReplyEvent);
-        System.out.println("[INTENT]: Mensagem enviada ao tópico '" + topic + "'");
     }
 }
