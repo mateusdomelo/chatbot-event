@@ -1,5 +1,6 @@
 package com.mateusdomelo.chatgateway.api;
 
+import com.mateusdomelo.chatgateway.api.dto.ChatMessageHistoryResponse;
 import com.mateusdomelo.chatgateway.api.dto.SendMessageRequest;
 import com.mateusdomelo.chatgateway.api.dto.SendMessageResponse;
 import com.mateusdomelo.chatgateway.domain.ChatMessage;
@@ -7,14 +8,11 @@ import com.mateusdomelo.chatgateway.messaging.ChatMessageProducer;
 import com.mateusdomelo.chatgateway.messaging.event.ChatMessageEvent;
 import com.mateusdomelo.chatgateway.repository.ChatMessageRepository;
 import jakarta.validation.Valid;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
+import java.util.List;
 
 @RestController
 @RequestMapping("/chat")
@@ -36,5 +34,12 @@ public class ChatController {
         chatMessageRepository.save(new ChatMessage(request.sessionId(), "user", request.message(), sentAt));
 
         return ResponseEntity.accepted().body(new SendMessageResponse(request.sessionId(), request.message(), sentAt));
+    }
+
+    @GetMapping("/{sessionId}")
+    public ResponseEntity<ChatMessageHistoryResponse> getChatHistory(@PathVariable String sessionId) {
+        List<ChatMessage> messagesList = chatMessageRepository.findBySessionIdOrderByTimestampAsc(sessionId);
+
+        return ResponseEntity.ok(new ChatMessageHistoryResponse(messagesList));
     }
 }
